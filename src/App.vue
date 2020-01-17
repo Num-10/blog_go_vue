@@ -151,7 +151,7 @@ export default {
           }
         })
       } else {
-        console.log(this.$children[1].$data)
+        console.log(this.$children)
         /* this.$refs.Index.$data.search = searchValue
         this.$refs.Index.getIndex() */
       }
