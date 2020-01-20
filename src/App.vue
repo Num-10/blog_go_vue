@@ -18,13 +18,13 @@
                   </ul>
               </div>
               <div class="nb-a-holder"><router-link active-class="_active" class="nb-a ta-c" to="/time_line">时间线</router-link></div>
-              <div class="nb-a-holder"><router-link active-class="_active" class="nb-a ta-c" to="/about">关于</router-link></div>
+              <!-- <div class="nb-a-holder"><router-link active-class="_active" class="nb-a ta-c" to="/about">关于</router-link></div> -->
               <div class="nb-a-holder"><router-link active-class="_active" class="nb-a ta-c" to="/friend_link">友情链接</router-link></div>
 
               <div id="search-nb">
                   <span class="search-s fl">
                       <label for="search-input"></label>
-                      <input class="fl search_i" type="text" id="search-input" v-on:keyup.enter="search_method" placeholder="请输入关键字">
+                      <input class="fl search_i" type="text" id="search-input" v-model="search" v-on:keyup.enter="search_method" placeholder="请输入关键字">
                       <a class="search-icon fl" v-on:click="search_method" href="javascript:;"></a>
                   </span>
               </div>
@@ -56,11 +56,11 @@
           <!-- <li><p v-on:click="to_nav('/register')">注册</p></li> -->
           <li><p v-on:click="to_nav('/category')">分类</p></li>
           <li><p v-on:click="to_nav('/time_line')">时间线</p></li>
-          <li><p v-on:click="to_nav('/about')">关于</p></li>
+          <!-- <li><p v-on:click="to_nav('/about')">关于</p></li> -->
           <li><p v-on:click="to_nav('/friend_link')">友情链接</p></li>
           <li>
               <span class="search-s fl">
-                  <label for="search-input-m"></label><input class="fl search_i" :search="search" v-on:keyup.enter="search_method" type="text" id="search-input-m" placeholder="关键词">
+                  <label for="search-input-m"></label><input class="fl search_i" v-model="search" v-on:keyup.enter="search_method" type="text" id="search-input-m" placeholder="关键词">
                   <a class="search-icon fl" v-on:click="search_method" href="javascript:;"></a>
               </span>
           </li>
@@ -69,7 +69,7 @@
       <!-- 移动端导航栏结束 -->
       <!-- 主要内容 -->
       <div class="container">
-        <router-view/>
+        <router-view ref='target-name'/>
       </div>
     </div>
   </div>
@@ -136,8 +136,7 @@ export default {
   name: 'App',
   data () {
     return {
-      search: '',
-      is_search: false
+      search: ''
     }
   },
   methods: {
@@ -151,9 +150,8 @@ export default {
           }
         })
       } else {
-        console.log(this.$children)
-        /* this.$refs.Index.$data.search = searchValue
-        this.$refs.Index.getIndex() */
+        this.$refs['target-name'].search = searchValue
+        this.$refs['target-name'].is_search = true
       }
     },
     show_nav: function (event) {

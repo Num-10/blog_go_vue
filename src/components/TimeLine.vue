@@ -51,36 +51,41 @@
             <div class="result-box fl">
                 <!--文章内容-->
                 <div id="article-holder" style="width: 100%; float: left">
-
-                    <div class="article-box">
+                    <div :class="item.cover_image_url ? 'article-box' : 'article-box article-box-height'" v-for="item in articleList" v-bind:key="item.id">
                         <div class="ab-content">
-                            <div class="article-title"> <a href="article-detail.html">Django常用ORM方法</a> </div>
-                            <div class="article-cate"><a href="category.html">后台</a> <a style="color:#a6a6a6">/</a>
-                                <a href="label.html">Django</a>
+                            <div class="article-title"> <a href="article-detail.html">{{ item.title }}</a> </div>
+                            <div class="article-cate">
+                              <a href="category.html">{{ item.tag_name }}</a>
                             </div>
-                            <a href="article-detail.html" class="article-img-box">
-                                <img class="article-img" alt=""
-                                    src="">
+                            <a href="article-detail.html" class="article-img-box" v-if="item.cover_image_url">
+                              <img class="article-img" alt="" :src="item.cover_image_url">
                             </a>
-                            <div class="article-detail-box c-666">
-                                ![](https://img.hacpai.com/bing/20171230.jpg?imageView2/1/w/768/h/432/interlace/1/q/100)
-
-                                # 前言
-                                Django内置了数据库抽象API，通过调用指定函数，封装对象的方法来完成对数据库检索、增加、删除、修改、聚合等操作，无需手写SQL，可以大大提升开发效率。
-
-                                - 开始教程之前，我们已经在 **mysite/b </div> <span class="article-tail-box"> <i class="fl"
-                                    style="background-image: url('./static/img/read-index.svg')"></i>
-                                <span class="read-number c-999 fl">62</span>
-                                <i class="fl" style="background-image: url('./static/img/comment-index.svg')"></i>
-                                <span class="comment-number c-999 fl">0</span> <span class="article-date c-999">8月7日
-                                    22:23</span> <span class="article-author one-line-overflow c-999">admin</span>
+                            <div :class="item.cover_image_url ? 'article-detail-box c-666' : 'article-detail-box-no-img c-666'">
+                              {{ item.content }}
+                            </div>
+                            <span class="article-tail-box">
+                              <i class="fl" style="background-image: url('./static/img/read-index.svg')"></i>
+                              <span class="read-number c-999 fl">{{ item.view_count }}</span>
+                              <i class="fl" style="background-image: url('./static/img/comment-index.svg')"></i>
+                              <span class="comment-number c-999 fl">0</span>
+                              <span class="article-date c-999">{{ item.author }}</span>
+                              <span class="article-author one-line-overflow c-999">{{ item.created_format }}</span>
                             </span>
                         </div>
                     </div>
                 </div>
-
                 <!--分页指示器-->
-                <div id="pagination" class="pagination fl"></div>
+                <div class="pagination">
+                  <el-pagination
+                    background
+                    hide-on-single-page
+                    layout="prev, pager, next"
+                    :page-count="total_page"
+                    :page-size="page_size"
+                    :total="count"
+                    @current-change="change_page">
+                  </el-pagination>
+                </div>
             </div>
 
         </article>
@@ -92,7 +97,33 @@ export default {
   name: 'TimeLine',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      page: 1,
+      page_size: 1,
+      total_page: 0,
+      count: 0,
+      articleList: []
+    }
+  },
+  created () {
+    this.getIndex()
+  },
+  methods: {
+    getIndex: function () {
+      let _this = this
+      this.$axios.get('/oo', {
+        params: {
+          page: this.$data.page,
+          page_size: this.$data.page_size
+        }
+      }).then(function (response) {
+        _this.$data.articleList = response.data.data.list
+        _this.$data.count = response.data.data.count
+        _this.$data.total_page = Math.ceil(response.data.data.count / _this.$data.page_size)
+      })
+    },
+    change_page: function (page) {
+      this.$data.page = page
+      this.getIndex()
     }
   }
 }

@@ -85,9 +85,8 @@
 }
 
 #person-img {
-    max-height: 90px;
-    max-width: 90px;
-    border-radius: 50%;
+    max-height: 6.25rem;
+    border-radius: 0.625rem;
     overflow: hidden;
     -webkit-transition: -webkit-transform 2s ease-out;
     -moz-transition: -moz-transform 2s ease-out;
@@ -331,8 +330,8 @@
     color: #007aff;
 }
 
-#a-active {
-    color: #007aff;
+.a-active {
+    color: #007aff !important;
     background-color: #eceff2;
 }
 
