@@ -1,39 +1,41 @@
 <template>
-<div class="login_container">
-  <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-    <el-form-item label="账号" prop="username">
-      <el-input type="text" v-model="ruleForm.username" autocomplete="off"></el-input>
-    </el-form-item>
-    <el-form-item label="密码" prop="password">
-      <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
-    </el-form-item>
-    <el-image
-      class="code_div"
-      :src="url"
-      :fit="fit"
-      v-on:click="change_code">
-    </el-image>
-    <el-form-item label="验证码" prop="code">
-      <el-input v-model="ruleForm.code"></el-input>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-      <el-button @click="resetForm('ruleForm')">重置</el-button>
-    </el-form-item>
-  </el-form>
-</div>
+  <div class="article_content">
+    <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+      <div class="top">
+        <el-form-item label="账号" prop="username">
+          <el-input type="text" v-model="ruleForm.username" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-image
+          class="code_div"
+          :src="url"
+          :fit="fit"
+          v-on:click="change_code">
+        </el-image>
+        <el-form-item label="验证码" prop="code">
+          <el-input v-model="ruleForm.code"></el-input>
+        </el-form-item>
+      </div>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+        <el-button @click="resetForm('ruleForm')">重置</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Login',
+  name: 'ArticleEdit',
   data () {
     return {
       fit: 'contain',
       url: '',
       ruleForm: {
-        username: '',
-        password: '',
+        username: 'admin',
+        password: '123456',
         code: ''
       },
       ruleCode: {
@@ -118,14 +120,16 @@ export default {
 </script>
 
 <style>
-.login_container {
-  width: 18%;
-  padding: 6.25rem 6.25rem;
-  margin: 3.125rem auto;
+.article_content {
+  width: 90%;
+  padding: 3.125rem 0.625rem;
+  margin: 1.25rem auto;
   padding-left: 2.375rem;
+  background-color: #FFFFFF;
 }
-.login_container:hover {
-    box-shadow: 0 0 10px #767676;
+.top {
+  width: 30%;
+  margin: auto;
 }
 .code_div {
   margin-bottom: 0.625rem;

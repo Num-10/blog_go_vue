@@ -1,31 +1,15 @@
 <template>
-<!--主体-->
-    <div class="big-container">
-        <article class="article">
-
-            <!--友情链接-->
-            <ul class="link-box">
-
-                <li>
-                    <a href="https://www.zhaoyangkun.top/" target="_blank">苍茫误此生博客</a>
-                </li>
-
-                <li>
-                    <a href="http://pipe.zhaoyangkun.top/" target="_blank">ZYK博客</a>
-                </li>
-
-                <li>
-                    <a href="http://vanessa.b3log.org/" target="_blank">Vanessa</a>
-                </li>
-
-                <li>
-                    <a href="https://88250.b3log.org/" target="_blank">D 的个人博客</a>
-                </li>
-
-            </ul>
-
-        </article>
-    </div>
+<div class="big-container">
+  <article class="article">
+    <!--友情链接-->
+    <ul class="link-box">
+      <li v-for="item in linkList" :key="item.id">
+        <a :href="item.link" target="_blank">{{ item.title }}</a>
+        <span class="description">{{ item.desc }}</span>
+      </li>
+    </ul>
+  </article>
+</div>
 </template>
 
 <script>
@@ -33,7 +17,20 @@ export default {
   name: 'FriendLink',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      linkList: []
+    }
+  },
+  created () {
+    this.getIndex()
+  },
+  methods: {
+    getIndex: function () {
+      let _this = this
+      this.$axios.get('/oo/link/list', {
+        params: {}
+      }).then(function (response) {
+        _this.$data.linkList = response.data.data.list
+      })
     }
   }
 }

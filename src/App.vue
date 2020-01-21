@@ -28,6 +28,20 @@
                       <a class="search-icon fl" v-on:click="search_method" href="javascript:;"></a>
                   </span>
               </div>
+
+              <div class="nb-a-holder" v-if="is_login">
+                  <el-dropdown class="edit_menu">
+                    <span class="el-dropdown-link">
+                      <i class="el-icon-edit"></i>编辑<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item><router-link to="/article_edit"><i class="el-icon-set-up"></i>新增文章</router-link></el-dropdown-item>
+                      <el-dropdown-item><router-link to="/category_edit"><i class="el-icon-collection-tag"></i>新增分类</router-link></el-dropdown-item>
+                      <el-dropdown-item><router-link to="/link_edit"><i class="el-icon-link"></i>新增链接</router-link></el-dropdown-item>
+                    </el-dropdown-menu>
+                  </el-dropdown>
+              </div>
+
               <!-- <div class="nb-a-holder-last">
                 <div class="nb-a-holder-small">
                   <router-link class="a-login" to="/login">登录</router-link>
@@ -64,6 +78,9 @@
                   <a class="search-icon fl" v-on:click="search_method" href="javascript:;"></a>
               </span>
           </li>
+          <li v-if="is_login"><p v-on:click="to_nav('/article_edit')"><i class="el-icon-set-up"></i>新增文章</p></li>
+          <li v-if="is_login"><p v-on:click="to_nav('/category_edit')"><i class="el-icon-collection-tag"></i>新增分类</p></li>
+          <li v-if="is_login"><p v-on:click="to_nav('/link_edit')"><i class="el-icon-link"></i>新增链接</p></li>
       </ul>
       <div style="height: 3.75rem;"></div>
       <!-- 移动端导航栏结束 -->
@@ -136,8 +153,12 @@ export default {
   name: 'App',
   data () {
     return {
-      search: ''
+      search: '',
+      is_login: false
     }
+  },
+  created () {
+    this.$data.is_login = localStorage.token
   },
   methods: {
     search_method: function (event) {
@@ -193,5 +214,15 @@ body, html {
   border-top: 0.25rem solid #409EFF;
   position: fixed;
   z-index: 999;
+}
+.el-dropdown-link {
+  cursor: pointer;
+  color: #409EFF;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
+.edit_menu {
+  margin-top: 1.25rem;
 }
 </style>

@@ -140,11 +140,19 @@
 
 /*右容器*/
 .column-holder {
-    width: 300px;
     margin: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
     -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
     transition: ease-in-out background-color 0.3s;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: left;
+    margin-right: 20px;
+    margin-top: 20px;
+    position: fixed;
+    min-width: 12.5rem;
+    margin-left: 3.125rem;
+    line-height: 1.8;
 }
 
 .column-holder:hover {
@@ -651,14 +659,3 @@
         float: right;
     }
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -31,6 +31,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     if (response.data.code === 1001) {
+      window.localStorage['token'] = ''
       router.replace({
         path: '/login',
         query: {redirect: router.currentRoute.fullPath}

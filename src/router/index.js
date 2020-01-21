@@ -6,6 +6,8 @@ import TimeLine from '@/components/TimeLine'
 import FriendLink from '@/components/FriendLink'
 import Login from '@/components/Login'
 import Article from '@/components/Article'
+import ArticleEdit from '@/components/ArticleEdit'
+import CategoryEdit from '@/components/CategoryEdit'
 
 Vue.use(Router)
 
@@ -52,12 +54,18 @@ export default new Router({
     },
     {
       path: '/category_edit',
-      name: 'Article',
-      component: Article,
+      name: 'CategoryEdit',
+      component: CategoryEdit,
       meta: { requireAuth: true }
     },
     {
       path: '/article_edit',
+      name: 'ArticleEdit',
+      component: ArticleEdit,
+      meta: { requireAuth: true }
+    },
+    {
+      path: '/link_edit',
       name: 'Article',
       component: Article,
       meta: { requireAuth: true }

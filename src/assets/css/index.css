@@ -111,7 +111,7 @@
 }
 
 .right-holder {
-    width: 372px;
+    width: 18.75rem;
     float: left;
     margin-left: 15px;
     margin-bottom: 10px;
@@ -275,7 +275,7 @@
 
 .column-container {
     float: left;
-    width: 362px;
+    width: 16.25rem;
     margin-left: 5px;
     margin-top: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
@@ -294,9 +294,9 @@
 }
 
 .column_box .column-title {
-    width: 91%;
+    width: 100%;
     height: 60px;
-    padding-left: 9%;
+    /* padding-left: 9%; */
     line-height: 60px;
     font-size: 16px;
     font-weight: 600;
@@ -307,10 +307,11 @@
     height: 50px;
     line-height: 50px;
     font-size: 15px;
-/*    !*单行文本溢出显示省略号*!
+   !*单行文本溢出显示省略号*!
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;*/
+    text-overflow: ellipsis;
+    text-align: left;
 }
 
 .column_box .column-category a {
@@ -385,7 +386,7 @@
     .article {
         width: 100%;
         margin: 0 auto;
-        padding-top: 60px;
+        /* padding-top: 60px; */
         padding-bottom: 10px;
     }
 

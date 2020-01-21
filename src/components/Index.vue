@@ -9,13 +9,13 @@
                   <div id="article-holder" style="width: 100%; float: left">
                       <div :class="item.cover_image_url ? 'article-box' : 'article-box article-box-height'" v-for="item in articleList" v-bind:key="item.id">
                           <div class="ab-content">
-                              <div class="article-title"> <a href="article-detail.html">{{ item.title }}</a> </div>
+                              <div class="article-title"> <router-link :to="{ name: 'Article', query:{article_id: item.article_id} }">{{ item.title }}</router-link> </div>
                               <div class="article-cate">
                                 <router-link :to="{ name: 'Category', params: { tag_id: item.tag_id } }">{{ item.tag_name }}</router-link>
                               </div>
-                              <a href="article-detail.html" class="article-img-box" v-if="item.cover_image_url">
+                              <router-link :to="{ name: 'Article', query:{article_id: item.article_id} }" class="article-img-box" v-if="item.cover_image_url">
                                 <img class="article-img" alt="" :src="item.cover_image_url">
-                              </a>
+                              </router-link>
                               <div :class="item.cover_image_url ? 'article-detail-box c-666' : 'article-detail-box-no-img c-666'">
                                 {{ item.content }}
                               </div>
