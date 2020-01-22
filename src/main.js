@@ -19,7 +19,8 @@ axios.interceptors.request.use(
   config => {
     config.data = qs.stringify(config.data)
     config.headers = {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'token': localStorage.token
     }
     return config
   },
@@ -50,12 +51,6 @@ axios.interceptors.response.use(
   },
   error => {
     return Promise.reject(error.response.data)
-  },
-  config => {
-    if (localStorage.token) {
-      config.headers.Authorization = localStorage.token
-    }
-    return config
   }
 )
 axios.defaults.baseURL = process.env.API_BASE_PATH

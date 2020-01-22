@@ -89,6 +89,7 @@ export default {
               })
             } else {
               _this.$message.error(response.data.message)
+              _this.change_code_api()
             }
           })
         } else {

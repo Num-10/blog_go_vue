@@ -2,8 +2,14 @@
   <div class="article_content">
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <div class="top">
-        <el-form-item label="标签名" prop="title">
+        <el-form-item label="网址名称" prop="title">
           <el-input type="text" maxlength="20" show-word-limit v-model="ruleForm.title" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="网址描述" prop="desc">
+          <el-input type="text" maxlength="100" show-word-limit v-model="ruleForm.desc" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="网址链接" prop="link">
+          <el-input type="text" maxlength="255" show-word-limit v-model="ruleForm.link" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="排序" prop="sort">
           <el-input type="text" v-model.number="ruleForm.sort" autocomplete="off"></el-input>
@@ -28,18 +34,28 @@ const validateAcquaintance = (rule, value, callback) => {
 }
 
 export default {
-  name: 'CategoryEdit',
+  name: 'LinkEdit',
   data () {
     return {
       tag_id: 0,
       ruleForm: {
         title: '',
+        desc: '',
+        link: '',
         sort: 0
       },
       rules: {
         title: [
-          { required: true, message: '请输入标签名', trigger: 'blur' },
+          { required: true, message: '请输入网址名称', trigger: 'blur' },
           { max: 20, message: '长度最大 20 个字符', trigger: 'blur' }
+        ],
+        desc: [
+          { required: true, message: '请输入网址描述', trigger: 'blur' },
+          { max: 100, message: '长度最大 20 个字符', trigger: 'blur' }
+        ],
+        link: [
+          { required: true, message: '请输入网址链接', trigger: 'blur' },
+          { max: 255, message: '长度最大 255 个字符', trigger: 'blur' }
         ],
         sort: [
           {
@@ -55,22 +71,6 @@ export default {
     }
   },
   created: function () {
-    let _this = this
-    this.$data.tag_id = this.$route.params.tag_id
-    if (this.$data.tag_id > 0) {
-      this.$axios({
-        method: 'get',
-        url: '/ao/tag/find/' + this.$data.tag_id,
-        data: {}
-      }).then(response => {
-        if (response.data.code === 200) {
-          _this.$data.ruleForm.title = response.data.data.title
-          _this.$data.ruleForm.sort = response.data.data.sort
-        } else {
-          _this.$message.error(response.data.message)
-        }
-      })
-    }
   },
   methods: {
     submitForm (formName) {
@@ -79,7 +79,7 @@ export default {
         if (valid) {
           this.$axios({
             method: 'post',
-            url: '/ao/tag/save/' + this.$data.tag_id,
+            url: '/ao/link/save/' + this.$data.tag_id,
             data: this.$data.ruleForm
           }).then(response => {
             if (response.data.code === 200) {

@@ -28,11 +28,23 @@
                       <a class="search-icon fl" v-on:click="search_method" href="javascript:;"></a>
                   </span>
               </div>
+              <div class="nb-a-holder" v-if="is_login">
+                  <el-dropdown class="edit_menu">
+                    <span class="el-dropdown-link">
+                      <i class="el-icon-menu"></i>管理<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item><router-link to="/article_list"><i class="el-icon-set-up"></i>文章列表</router-link></el-dropdown-item>
+                      <el-dropdown-item><router-link to="/category_list"><i class="el-icon-collection-tag"></i>分类列表</router-link></el-dropdown-item>
+                      <el-dropdown-item><router-link to="/link_list"><i class="el-icon-link"></i>链接列表</router-link></el-dropdown-item>
+                    </el-dropdown-menu>
+                  </el-dropdown>
+              </div>
 
               <div class="nb-a-holder" v-if="is_login">
                   <el-dropdown class="edit_menu">
                     <span class="el-dropdown-link">
-                      <i class="el-icon-edit"></i>编辑<i class="el-icon-arrow-down el-icon--right"></i>
+                      <i class="el-icon-edit"></i>新增<i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
                       <el-dropdown-item><router-link to="/article_edit"><i class="el-icon-set-up"></i>新增文章</router-link></el-dropdown-item>
@@ -78,9 +90,9 @@
                   <a class="search-icon fl" v-on:click="search_method" href="javascript:;"></a>
               </span>
           </li>
-          <li v-if="is_login"><p v-on:click="to_nav('/article_edit')"><i class="el-icon-set-up"></i>新增文章</p></li>
-          <li v-if="is_login"><p v-on:click="to_nav('/category_edit')"><i class="el-icon-collection-tag"></i>新增分类</p></li>
-          <li v-if="is_login"><p v-on:click="to_nav('/link_edit')"><i class="el-icon-link"></i>新增链接</p></li>
+          <li v-if="is_login"><p v-on:click="to_nav('/article_list')"><i class="el-icon-set-up"></i>文章列表</p></li>
+          <li v-if="is_login"><p v-on:click="to_nav('/category_list')"><i class="el-icon-collection-tag"></i>分类列表</p></li>
+          <li v-if="is_login"><p v-on:click="to_nav('/link_list')"><i class="el-icon-link"></i>链接列表</p></li>
       </ul>
       <div style="height: 3.75rem;"></div>
       <!-- 移动端导航栏结束 -->

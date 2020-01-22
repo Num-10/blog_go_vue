@@ -8,6 +8,8 @@ import Login from '@/components/Login'
 import Article from '@/components/Article'
 import ArticleEdit from '@/components/ArticleEdit'
 import CategoryEdit from '@/components/CategoryEdit'
+import CategoryList from '@/components/CategoryList'
+import LinkEdit from '@/components/LinkEdit'
 
 Vue.use(Router)
 
@@ -59,6 +61,12 @@ export default new Router({
       meta: { requireAuth: true }
     },
     {
+      path: '/category_list',
+      name: 'CategoryList',
+      component: CategoryList,
+      meta: { requireAuth: true }
+    },
+    {
       path: '/article_edit',
       name: 'ArticleEdit',
       component: ArticleEdit,
@@ -66,8 +74,8 @@ export default new Router({
     },
     {
       path: '/link_edit',
-      name: 'Article',
-      component: Article,
+      name: 'LinkEdit',
+      component: LinkEdit,
       meta: { requireAuth: true }
     }
   ]
