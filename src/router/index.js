@@ -9,6 +9,7 @@ import Article from '@/components/Article'
 import ArticleEdit from '@/components/ArticleEdit'
 import CategoryEdit from '@/components/CategoryEdit'
 import CategoryList from '@/components/CategoryList'
+import LinkList from '@/components/LinkList'
 import LinkEdit from '@/components/LinkEdit'
 
 Vue.use(Router)
@@ -70,6 +71,12 @@ export default new Router({
       path: '/article_edit',
       name: 'ArticleEdit',
       component: ArticleEdit,
+      meta: { requireAuth: true }
+    },
+    {
+      path: '/link_list',
+      name: 'LinkList',
+      component: LinkList,
       meta: { requireAuth: true }
     },
     {

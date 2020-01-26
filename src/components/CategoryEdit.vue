@@ -1,5 +1,7 @@
 <template>
   <div class="article_content">
+    <el-page-header @back="goBack" content="标签详情"></el-page-header>
+    <br><br>
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <div class="top">
         <el-form-item label="标签名" prop="title">
@@ -84,6 +86,9 @@ export default {
           }).then(response => {
             if (response.data.code === 200) {
               _this.$message.success('操作成功！')
+              setTimeout(function () {
+                _this.$router.push('/category_list')
+              }, 1000)
             } else {
               _this.$message.error(response.data.message)
             }
@@ -92,6 +97,9 @@ export default {
           return false
         }
       })
+    },
+    goBack: function () {
+      this.$router.go(-1)
     }
   }
 }
@@ -100,7 +108,7 @@ export default {
 <style>
 .article_content {
   width: 50%;
-  padding: 3.125rem 0.625rem;
+  padding: 1.25rem 1.875rem 1.25rem 0.625rem;
   margin: 1.25rem auto;
   padding-left: 2.375rem;
   background-color: #FFFFFF;

@@ -2,35 +2,37 @@
   <div class="article_content">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>标签管理</el-breadcrumb-item>
+      <el-breadcrumb-item>链接管理</el-breadcrumb-item>
     </el-breadcrumb>
-    <el-button type="primary" v-on:click="add" class="add_btn" size="mini">新增<i class="el-icon-circle-plus-outline el-icon--right"></i></el-button>
     <br>
+    <el-button type="primary" v-on:click="add" class="add_btn" size="mini">新增<i class="el-icon-circle-plus-outline el-icon--right"></i></el-button>
     <el-table
       :data="tableData"
       stripe
       style="width: 100%">
       <el-table-column
         prop="title"
-        label="分类名">
+        label="网址名称">
       </el-table-column>
       <el-table-column
-        prop="article_count"
-        label="文章数">
+        prop="desc"
+        label="网址简介"
+        width="300">
       </el-table-column>
       <el-table-column
         prop="sort"
-        label="排序">
+        label="排序"
+        width="100">
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button
             size="mini"
-            @click="handleEdit(scope.$index, scope.row.tag_id)">编辑</el-button>
+            @click="handleEdit(scope.$index, scope.row.link_id)">编辑</el-button>
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index, scope.row.tag_id)">删除</el-button>
+            @click="handleDelete(scope.$index, scope.row.link_id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -52,7 +54,7 @@
 
 <script>
 export default {
-  name: 'CategoryEdit',
+  name: 'LinkList',
   data () {
     return {
       page: 1,
@@ -68,9 +70,9 @@ export default {
   methods: {
     handleEdit (index, row) {
       this.$router.push({
-        name: 'CategoryEdit',
-        params: {
-          tag_id: row
+        name: 'LinkEdit',
+        query: {
+          link_id: row
         }
       })
     },
@@ -78,7 +80,7 @@ export default {
       let _this = this
       this.$axios({
         method: 'delete',
-        url: '/ao/tag/delete/' + row
+        url: '/ao/link/delete/' + row
       }).then(response => {
         if (response.data.code === 200) {
           _this.$message.success('操作成功！')
@@ -90,7 +92,7 @@ export default {
       let _this = this
       this.$axios({
         method: 'get',
-        url: '/oo/tag/list',
+        url: '/oo/link/list',
         params: {
           page: this.$data.page,
           page_size: this.$data.page_size
@@ -110,7 +112,7 @@ export default {
       this.getList()
     },
     add: function () {
-      this.$router.push('/category_edit')
+      this.$router.push('/link_edit')
     }
   }
 }
@@ -142,6 +144,6 @@ export default {
 }
 .add_btn {
   float: right;
-  margin-right: 3.4375rem;
+  margin-right: 2.625rem;
 }
 </style>
