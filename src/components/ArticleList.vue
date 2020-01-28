@@ -1,8 +1,8 @@
 <template>
-  <div class="category_content">
+  <div class="article_content">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>标签管理</el-breadcrumb-item>
+      <el-breadcrumb-item>文章管理</el-breadcrumb-item>
     </el-breadcrumb>
     <el-button type="primary" v-on:click="add" class="add_btn" size="mini">新增<i class="el-icon-circle-plus-outline el-icon--right"></i></el-button>
     <br>
@@ -12,25 +12,50 @@
       style="width: 100%">
       <el-table-column
         prop="title"
-        label="分类名">
+        label="标题">
       </el-table-column>
       <el-table-column
-        prop="article_count"
-        label="文章数">
+        prop="tag_name"
+        label="分类">
+      </el-table-column>
+      <el-table-column
+        label="显示状态"
+        width="100"
+        align="center">
+        <template slot-scope="scope">
+          <el-switch
+            v-model="scope.row.for_status"
+            disabled>
+          </el-switch>
+          <div></div>
+        </template>
       </el-table-column>
       <el-table-column
         prop="sort"
-        label="排序">
+        label="排序"
+        width="100"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="view_count"
+        label="阅读数"
+        width="100"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="created_format"
+        label="创建时间"
+        align="center">
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button
             size="mini"
-            @click="handleEdit(scope.$index, scope.row.tag_id)">编辑</el-button>
+            @click="handleEdit(scope.$index, scope.row.article_id)">编辑</el-button>
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index, scope.row.tag_id)">删除</el-button>
+            @click="handleDelete(scope.$index, scope.row.article_id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -52,7 +77,7 @@
 
 <script>
 export default {
-  name: 'CategoryList',
+  name: 'ArticleList',
   data () {
     return {
       page: 1,
@@ -68,9 +93,9 @@ export default {
   methods: {
     handleEdit (index, row) {
       this.$router.push({
-        name: 'CategoryEdit',
-        params: {
-          tag_id: row
+        name: 'ArticleEdit',
+        query: {
+          article_id: row
         }
       })
     },
@@ -78,7 +103,8 @@ export default {
       let _this = this
       this.$axios({
         method: 'delete',
-        url: '/ao/tag/delete/' + row
+        url: '/ao/article/delete/' + row,
+        data: {status: 3}
       }).then(response => {
         if (response.data.code === 200) {
           _this.$message.success('操作成功！')
@@ -90,7 +116,7 @@ export default {
       let _this = this
       this.$axios({
         method: 'get',
-        url: '/oo/tag/list',
+        url: '/oo',
         params: {
           page: this.$data.page,
           page_size: this.$data.page_size
@@ -110,15 +136,15 @@ export default {
       this.getList()
     },
     add: function () {
-      this.$router.push('/category_edit')
+      this.$router.push('/article_edit')
     }
   }
 }
 </script>
 
 <style>
-.category_content {
-  width: 50%;
+.article_content {
+  width: 70%;
   padding: 1.25rem 1.875rem 1.25rem 0.625rem;
   margin: 1.25rem auto;
   padding-left: 2.375rem;
@@ -142,6 +168,6 @@ export default {
 }
 .add_btn {
   float: right;
-  margin-right: 3.4375rem;
+  margin-right: 3.5rem;
 }
 </style>

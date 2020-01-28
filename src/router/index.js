@@ -7,6 +7,7 @@ import FriendLink from '@/components/FriendLink'
 import Login from '@/components/Login'
 import Article from '@/components/Article'
 import ArticleEdit from '@/components/ArticleEdit'
+import ArticleList from '@/components/ArticleList'
 import CategoryEdit from '@/components/CategoryEdit'
 import CategoryList from '@/components/CategoryList'
 import LinkList from '@/components/LinkList'
@@ -71,6 +72,12 @@ export default new Router({
       path: '/article_edit',
       name: 'ArticleEdit',
       component: ArticleEdit,
+      meta: { requireAuth: true }
+    },
+    {
+      path: '/article_list',
+      name: 'ArticleList',
+      component: ArticleList,
       meta: { requireAuth: true }
     },
     {

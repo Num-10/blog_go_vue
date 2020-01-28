@@ -1,62 +1,133 @@
 <template>
-  <div class="article_content">
+  <div class="article_content_edit">
+    <el-page-header @back="goBack" content="文章详情"></el-page-header>
+    <br><br>
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <div class="top">
-        <el-form-item label="账号" prop="username">
-          <el-input type="text" v-model="ruleForm.username" autocomplete="off"></el-input>
+        <el-form-item label="标题" prop="title">
+          <el-input type="text" maxlength="100" show-word-limit v-model="ruleForm.title" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
+        <el-form-item label="分类" prop="tag_id" class="form_select">
+          <el-select v-model="ruleForm.tag_id" placeholder="请选择分类">
+            <el-option
+              v-for="item in tagList"
+              :key="item.value"
+              :label="item.title"
+              :value="item.tag_id">
+            </el-option>
+          </el-select>
         </el-form-item>
-        <el-image
-          class="code_div"
-          :src="url"
-          :fit="fit"
-          v-on:click="change_code">
-        </el-image>
-        <el-form-item label="验证码" prop="code">
-          <el-input v-model="ruleForm.code"></el-input>
+        <el-form-item label="描述" prop="desc">
+          <el-input type="textarea" rows="5" maxlength="100" v-model="ruleForm.desc" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="显示状态" class="form_switch">
+          <el-switch v-model="ruleForm.status"></el-switch>
+        </el-form-item>
+        <el-form-item label="是否加精" class="form_switch">
+          <el-switch v-model="ruleForm.is_marrow"></el-switch>
+        </el-form-item>
+        <el-form-item label="是否置顶" class="form_switch">
+          <el-switch v-model="ruleForm.is_top"></el-switch>
+        </el-form-item><br>
+        <el-form-item label="排序" prop="sort">
+          <el-input type="text" v-model.number="ruleForm.sort" autocomplete="off"></el-input>
+        </el-form-item>
+      </div>
+      <div class="content">
+        <el-form-item label="标题" prop="title">
+          <el-input type="text" maxlength="20" show-word-limit v-model="ruleForm.title" autocomplete="off"></el-input>
         </el-form-item>
       </div>
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+const validateAcquaintance = (rule, value, callback) => {
+  // 输入 8--，value 为 8
+  // 估计这里内部使用了 parseInt() / parseFloat()
+  if (value < 0 || value > 99) {
+    callback(new Error('排序在 0 至 99 之间'))
+  } else {
+    callback()
+  }
+}
+
 export default {
   name: 'ArticleEdit',
   data () {
     return {
-      fit: 'contain',
-      url: '',
+      article_id: 0,
+      tagList: [],
       ruleForm: {
-        username: 'admin',
-        password: '123456',
-        code: ''
-      },
-      ruleCode: {
-        id: ''
+        title: '',
+        desc: '',
+        sort: 0,
+        status: true,
+        is_top: false,
+        is_marrow: false,
+        tag_id: ''
       },
       rules: {
-        username: [
-          { required: true, message: '请输入账号', trigger: 'blur' },
-          { max: 20, message: '长度最大 20 个字符', trigger: 'blur' }
+        title: [
+          { required: true, message: '请输入标题', trigger: 'blur' },
+          { max: 100, message: '长度最大 100 个字符', trigger: 'blur' }
         ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'blur' }
+        desc: [
+          { required: true, message: '请输入描述', trigger: 'blur' },
+          { max: 255, message: '长度最大 255 个字符', trigger: 'blur' }
         ],
-        code: [
-          { required: true, message: '请输入验证码', trigger: 'blur' }
+        tag_id: [
+          { required: true, message: '请选择分类', trigger: 'blur' },
+          { type: 'number', message: '请选择分类', trigger: 'blur' }
+        ],
+        sort: [
+          {
+            type: 'number',
+            message: '排序必须为数字',
+            trigger: 'blur'
+          }, {
+            validator: validateAcquaintance, // 自定义验证
+            trigger: 'blur'
+          }
         ]
       }
     }
   },
   created: function () {
-    this.change_code_api()
+    let _this = this
+    this.$data.article_id = this.$route.params.article_id
+    if (this.$data.article_id > 0) {
+      this.$axios({
+        method: 'get',
+        url: '/ao/tag/find/' + this.$data.article_id,
+        data: {}
+      }).then(response => {
+        if (response.data.code === 200) {
+          _this.$data.ruleForm.title = response.data.data.title
+          _this.$data.ruleForm.sort = response.data.data.sort
+        } else {
+          _this.$message.error(response.data.message)
+        }
+      })
+    }
+    this.$axios({
+      method: 'get',
+      url: '/oo/tag/list',
+      params: {
+        page: 1,
+        page_size: 1000
+      }
+    }).then(response => {
+      if (response.data.code === 200) {
+        _this.$data.tagList = response.data.data.list
+      } else {
+        _this.$message.error(response.data.message)
+      }
+    })
   },
   methods: {
     submitForm (formName) {
@@ -64,76 +135,54 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$axios({
-            method: 'get',
-            url: '/oo/verify/' + this.$data.ruleCode.id + '/' + this.$data.ruleForm.code
+            method: 'post',
+            url: '/ao/article/save/' + this.$data.article_id,
+            data: this.$data.ruleForm
           }).then(response => {
             if (response.data.code === 200) {
-              _this.$axios({
-                method: 'post',
-                url: '/oo/login',
-                data: this.$data.ruleForm
-              }).then(function (response) {
-                if (response.data.code === 200) {
-                  window.localStorage['token'] = response.data.data.token
-                  _this.$parent.is_login = true
-                  if (_this.$route.query.redirect) {
-                    _this.$router.push({path: decodeURIComponent(_this.$route.query.redirect)})
-                  } else {
-                    _this.$router.push('/')
-                  }
-                } else {
-                  _this.$message.error(response.data.message)
-                  _this.$data.ruleForm.code = ''
-                  _this.change_code_api()
-                }
-              }).catch(function (error) {
-                _this.$message.error(error)
-              })
+              _this.$message.success('操作成功！')
+              setTimeout(function () {
+                _this.$router.push('/article_list')
+              }, 1000)
             } else {
               _this.$message.error(response.data.message)
             }
           })
         } else {
-          console.log('error submit!!')
           return false
         }
       })
     },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
-    },
-    change_code (event) {
-      this.change_code_api()
-    },
-    change_code_api () {
-      let _this = this
-      this.$axios({
-        method: 'get',
-        url: '/oo/captcha'
-      }).then(function (response) {
-        _this.$data.url = process.env.API_BASE_PATH + '/oo' + response.data.imageUrl
-        _this.$data.ruleCode.id = response.data.captchaId
-      })
+    goBack: function () {
+      this.$router.go(-1)
     }
   }
 }
 </script>
 
 <style>
-.article_content {
+.article_content_edit {
   width: 90%;
-  padding: 3.125rem 0.625rem;
+  padding: 1.25rem 1.875rem 1.25rem 0.625rem;
   margin: 1.25rem auto;
   padding-left: 2.375rem;
   background-color: #FFFFFF;
 }
 .top {
-  width: 30%;
+  width: 40%;
   margin: auto;
 }
 .code_div {
   margin-bottom: 0.625rem;
   width: 8.75rem;
   height: 2.5rem;
+}
+.form_switch {
+  text-align: left;
+  display: table-cell;
+  margin-bottom: 0.625rem;
+}
+.form_select {
+  text-align: left;
 }
 </style>

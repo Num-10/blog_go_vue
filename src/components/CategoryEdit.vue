@@ -1,5 +1,5 @@
 <template>
-  <div class="article_content">
+  <div class="category_content_edit">
     <el-page-header @back="goBack" content="标签详情"></el-page-header>
     <br><br>
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
@@ -106,7 +106,7 @@ export default {
 </script>
 
 <style>
-.article_content {
+.category_content_edit {
   width: 50%;
   padding: 1.25rem 1.875rem 1.25rem 0.625rem;
   margin: 1.25rem auto;

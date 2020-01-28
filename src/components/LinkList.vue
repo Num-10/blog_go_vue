@@ -1,5 +1,5 @@
 <template>
-  <div class="article_content">
+  <div class="link_content">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>链接管理</el-breadcrumb-item>
@@ -119,7 +119,7 @@ export default {
 </script>
 
 <style>
-.article_content {
+.link_content {
   width: 50%;
   padding: 1.25rem 1.875rem 1.25rem 0.625rem;
   margin: 1.25rem auto;
