@@ -22,8 +22,8 @@
 }
 
 .left-box {
-    width: 850px;
-    float: left;
+    /* width: 850px;
+    float: left; */
 }
 
 .right-box {
@@ -38,7 +38,7 @@
 
 /*左容器*/
 .article-container {
-    width: 830px;
+    /* width: 830px; */
     margin: 20px 10px 10px 10px;
     padding: 20px;
     background-color: #ffffff;
@@ -177,7 +177,7 @@
 .column_box .column-title {
     width: 91%;
     height: 60px;
-    padding-left: 9%;
+    /* padding-left: 9%; */
     line-height: 60px;
     font-size: 16px;
     font-weight: 600;
@@ -515,7 +515,6 @@
         width: 100%;
         margin: 0 auto;
         overflow: hidden;
-        padding-top: 60px;
     }
 
     .left-box {

@@ -1,8 +1,6 @@
 <template>
 <!--主体-->
     <section class="main">
-        <input hidden id="user_id" name="user_id" value="">
-        <input hidden id="article_id" name="article_id" value="24">
         <div class="left-box">
             <div class="article-container">
                 <div class="sort-box">
@@ -22,8 +20,8 @@
                       <span>阅读(<span id="read-number">{{ articleInfo.view_count }}</span>)</span>
                       <!-- <span>评论(<span id="read-number">0</span>)</span> -->
                   </div>
-                  <div>
-                    {{ articleInfo.content }}
+                  <div class="body_content">
+                    <EditorMd ref="EditorMd" only_show=true></EditorMd>
                   </div>
                 </div>
 
@@ -157,21 +155,12 @@
             </div> -->
         </div>
 
-        <div class="right-box">
+        <!-- <div class="right-box">
 
             <div class="column-holder">
-              <ul>
-                 <li><a href="#_1">一. 前言</a></li>
-                 <li><a href="#app">二. 创建App</a></li>
-                 <li><a href="#_2">三. 连接数据库</a></li>
-                 <li><a href="#model">四. 反向生成Model</a></li>
-                 <li><a href="#_3">五. 从数据库获取数据</a></li>
-                 <li><a href="#_4">六. 在网页中显示</a></li>
-                 <li><a href="#_5">七. 最后</a></li>
-              </ul>
             </div>
 
-            <!-- <div class="column-holder" style="margin-top: 20px">
+            <div class="column-holder" style="margin-top: 20px">
                 <ul class="column_box">
                     <li class="column-title b-b-ece c-29">点击排行</li>
 
@@ -208,14 +197,18 @@
                     </li>
 
                 </ul>
-            </div> -->
-        </div>
+            </div>
+        </div> -->
     </section>
 </template>
 
 <script>
+import EditorMd from '@/components/EditorMd'
 export default {
   name: 'Index',
+  components: {
+    EditorMd
+  },
   data () {
     return {
       article_id: 0,
@@ -231,6 +224,11 @@ export default {
     }
     this.getArticle()
   },
+  mounted () {
+    // if (this.$refs.EditorMd.navigationHtml) {
+    //   $('.column-holder').append(this.$refs.EditorMd.navigationHtml)
+    // }
+  },
   methods: {
     getArticle: function () {
       let _this = this
@@ -243,6 +241,7 @@ export default {
           })
         }
         _this.$data.articleInfo = response.data.data
+        _this.$refs.EditorMd.content = response.data.data.content
       })
     }
   }
@@ -251,7 +250,11 @@ export default {
 
 <style>
 @import "../assets/css/article-detail.css";
-@import "../assets/css/code.css";
+/* @import "../assets/css/code.css";
 @import "../assets/css/github-markdown.css";
-@import "../assets/css/vditor.classic.css";
+@import "../assets/css/vditor.classic.css"; */
+
+.body_content {
+  text-align: left;
+}
 </style>

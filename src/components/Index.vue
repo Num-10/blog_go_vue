@@ -17,7 +17,10 @@
                                 <img class="article-img" alt="" :src="item.cover_image_url">
                               </router-link>
                               <div :class="item.cover_image_url ? 'article-detail-box c-666' : 'article-detail-box-no-img c-666'">
-                                {{ item.content }}
+                                <VueShowdown
+                                  :markdown="item.content"
+                                  flavor="github"
+                                  :options="{ emoji: true }"/>
                               </div>
                               <span class="article-tail-box">
                                 <i class="fl" style="background-image: url('./static/img/read-index.svg')"></i>
@@ -99,12 +102,17 @@
 </template>
 
 <script>
+import { VueShowdown } from 'vue-showdown'
+
 export default {
   name: 'Index',
+  components: {
+    VueShowdown
+  },
   data () {
     return {
       page: 1,
-      page_size: 1,
+      page_size: 10,
       search: '',
       is_search: false,
       total_page: 0,

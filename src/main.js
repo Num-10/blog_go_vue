@@ -17,7 +17,9 @@ Vue.use(ElementUI)
 // https request 拦截器
 axios.interceptors.request.use(
   config => {
-    config.data = qs.stringify(config.data)
+    if (!(config.data instanceof FormData)) {
+      config.data = qs.stringify(config.data)
+    }
     config.headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'token': localStorage.token

@@ -12,6 +12,7 @@ import CategoryEdit from '@/components/CategoryEdit'
 import CategoryList from '@/components/CategoryList'
 import LinkList from '@/components/LinkList'
 import LinkEdit from '@/components/LinkEdit'
+import EditorMd from '@/components/EditorMd'
 
 Vue.use(Router)
 
@@ -90,6 +91,12 @@ export default new Router({
       path: '/link_edit',
       name: 'LinkEdit',
       component: LinkEdit,
+      meta: { requireAuth: true }
+    },
+    {
+      path: '/editor_md',
+      name: 'EditorMd',
+      component: EditorMd,
       meta: { requireAuth: true }
     }
   ]

@@ -198,6 +198,7 @@
 }
 
 .article-detail-box {
+    overflow: hidden !important;
     float: left;
     height: 120px;
     width: 390px;
