@@ -582,6 +582,7 @@
         display: flex;
         justify-content: center;
     }
+    
     .comment-item .comment-box {
         width: 80%;
         float: right;
