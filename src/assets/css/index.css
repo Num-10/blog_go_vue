@@ -285,7 +285,7 @@
 }
 
 .column-container:hover {
-    box-shadow: 0 0 10px #007aff;
+  box-shadow: 0 0 10px #007aff;
 }
 
 .column_box {
