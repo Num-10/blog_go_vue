@@ -9,6 +9,7 @@
                   <div id="article-holder" style="width: 100%; float: left">
                       <div :class="item.cover_image_url ? 'article-box' : 'article-box article-box-height'" v-for="item in articleList" v-bind:key="item.id">
                           <div class="ab-content">
+                            <router-link :to="{ name: 'Article', query:{article_id: item.article_id} }">
                               <div class="article-title"> <router-link :to="{ name: 'Article', query:{article_id: item.article_id} }">{{ item.title }}</router-link> </div>
                               <div class="article-cate">
                                 <router-link :to="{ name: 'Category', params: { tag_id: item.tag_id } }">{{ item.tag_name }}</router-link>
@@ -30,6 +31,7 @@
                                 <span class="article-date c-999">{{ item.author }}</span>
                                 <span class="article-author one-line-overflow c-999">{{ item.created_format }}</span>
                               </span>
+                            </router-link>
                           </div>
                       </div>
                   </div>

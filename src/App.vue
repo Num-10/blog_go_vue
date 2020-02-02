@@ -112,7 +112,7 @@ $(function () {
         <p class="pull-left">
           由 <a href="http://weibo.com/u/1837553744?is_hot=1" target="_blank">num10</a> 设计和编码 <span style="color: #e27575;font-size: 14px;">❤</span> | Copyright © 2020
         </p>
-        <p class="pull-right"><a href="mailto:name@email.com">联系我们</a></p>
+        <p class="pull-right">鄂ICP备18003304号-1</p>
       </div>
     </footer>`
   $('#app').after(html)
@@ -223,13 +223,13 @@ body, html {
   border-radius: 0.3125rem;
 }
 .nav-bar-holder {
-  border-top: 0.25rem solid #409EFF;
+  border-top: 0.25rem solid #8c5ab4;
   position: fixed;
   z-index: 999;
 }
 .el-dropdown-link {
   cursor: pointer;
-  color: #409EFF;
+  color: #8c5ab4;
 }
 .el-icon-arrow-down {
   font-size: 12px;
