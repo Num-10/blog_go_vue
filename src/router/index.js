@@ -1,5 +1,5 @@
 import Vue from 'vue'
-// import Router from 'vue-router'
+import Router from 'vue-router'
 import Index from '@/components/Index'
 import Category from '@/components/Category'
 import TimeLine from '@/components/TimeLine'
@@ -13,8 +13,6 @@ import CategoryList from '@/components/CategoryList'
 import LinkList from '@/components/LinkList'
 import LinkEdit from '@/components/LinkEdit'
 import EditorMd from '@/components/EditorMd'
-
-const Router = require('vue-router')
 
 Vue.use(Router)
 

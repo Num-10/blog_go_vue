@@ -7,10 +7,9 @@ import App from './App'
 import router from './router'
 import $ from 'jquery'
 import './assets/css/global.css'
-// import axios from 'axios'
+import axios from 'axios'
 import qs from 'qs'
 
-const axios = require('axios')
 const ElementUI = require('element-ui')
 
 Vue.config.productionTip = false
