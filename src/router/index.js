@@ -1,4 +1,4 @@
-// import Vue from 'vue'
+import Vue from 'vue'
 // import Router from 'vue-router'
 import Index from '@/components/Index'
 import Category from '@/components/Category'
@@ -14,7 +14,6 @@ import LinkList from '@/components/LinkList'
 import LinkEdit from '@/components/LinkEdit'
 import EditorMd from '@/components/EditorMd'
 
-const Vue = require('vue')
 const Router = require('vue-router')
 
 Vue.use(Router)

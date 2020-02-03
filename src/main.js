@@ -1,6 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-// import Vue from 'vue'
+import Vue from 'vue'
 // import ElementUI from 'element-ui'
 // import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
@@ -10,7 +10,6 @@ import './assets/css/global.css'
 // import axios from 'axios'
 import qs from 'qs'
 
-const Vue = require('vue')
 const axios = require('axios')
 const ElementUI = require('element-ui')
 
