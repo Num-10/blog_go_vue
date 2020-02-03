@@ -10,7 +10,7 @@ import './assets/css/global.css'
 // import axios from 'axios'
 import qs from 'qs'
 
-const Vue = require('Vue')
+const Vue = require('vue')
 const axios = require('axios')
 const ElementUI = require('element-ui')
 

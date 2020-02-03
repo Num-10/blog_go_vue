@@ -14,7 +14,7 @@ import LinkList from '@/components/LinkList'
 import LinkEdit from '@/components/LinkEdit'
 import EditorMd from '@/components/EditorMd'
 
-const Vue = require('Vue')
+const Vue = require('vue')
 const Router = require('vue-router')
 
 Vue.use(Router)
