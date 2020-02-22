@@ -36,7 +36,7 @@ export default {
       toolbarsFlag: true,
       defaultOpen: 'preview',
       subfield: true,
-      navigation: true,
+      navigation: false,
       boxShadow: true,
       navigationHtml: ''
     }
