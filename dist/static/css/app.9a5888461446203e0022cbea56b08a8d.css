@@ -192,10 +192,10 @@ body, html {
     overflow: hidden;
 }
 .article-img-box .article-img[data-v-12d22c85] {
-    /*width: 280px;
-    height: 158px;*/
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 100%;
+    max-height: 100%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     -webkit-transition: all 0.6s;
@@ -443,6 +443,7 @@ body, html {
         height: auto;
         margin: 10px 0 0 2%;
         overflow: hidden;
+        text-align: center;
 }
 .article-detail-box[data-v-12d22c85] {
         width: 53%;
@@ -652,10 +653,10 @@ body, html {
     overflow: hidden;
 }
 .article-img-box .article-img {
-    /*width: 280px;
-    height: 158px;*/
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 100%;
+    max-height: 100%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     -webkit-transition: all 0.6s;
@@ -903,6 +904,7 @@ body, html {
         height: auto;
         margin: 10px 0 0 2%;
         overflow: hidden;
+        text-align: center;
 }
 .article-detail-box {
         width: 53%;
@@ -1112,10 +1114,10 @@ body, html {
     overflow: hidden;
 }
 .article-img-box .article-img {
-    /*width: 280px;
-    height: 158px;*/
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 100%;
+    max-height: 100%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     -webkit-transition: all 0.6s;
@@ -1363,6 +1365,7 @@ body, html {
         height: auto;
         margin: 10px 0 0 2%;
         overflow: hidden;
+        text-align: center;
 }
 .article-detail-box {
         width: 53%;
@@ -1675,10 +1678,10 @@ body, html {
     overflow: hidden;
 }
 .article-img-box .article-img {
-    /*width: 280px;
-    height: 158px;*/
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 100%;
+    max-height: 100%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     -webkit-transition: all 0.6s;
@@ -1926,6 +1929,7 @@ body, html {
         height: auto;
         margin: 10px 0 0 2%;
         overflow: hidden;
+        text-align: center;
 }
 .article-detail-box {
         width: 53%;

@@ -179,10 +179,10 @@
 }
 
 .article-img-box .article-img {
-    /*width: 280px;
-    height: 158px;*/
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 100%;
+    max-height: 100%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     transition: all 0.6s;
@@ -464,6 +464,7 @@
         height: auto;
         margin: 10px 0 0 2%;
         overflow: hidden;
+        text-align: center;
     }
 
     .article-detail-box {
