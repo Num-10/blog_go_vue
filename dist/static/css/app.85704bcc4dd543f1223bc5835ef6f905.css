@@ -185,6 +185,7 @@ body, html {
     color: #007aff;
 }
 .article-img-box[data-v-12d22c85] {
+    text-align: center;
     float: left;
     width: 280px;
     height: 158px;
@@ -646,6 +647,7 @@ body, html {
     color: #007aff;
 }
 .article-img-box {
+    text-align: center;
     float: left;
     width: 280px;
     height: 158px;
@@ -1107,6 +1109,7 @@ body, html {
     color: #007aff;
 }
 .article-img-box {
+    text-align: center;
     float: left;
     width: 280px;
     height: 158px;
@@ -1671,6 +1674,7 @@ body, html {
     color: #007aff;
 }
 .article-img-box {
+    text-align: center;
     float: left;
     width: 280px;
     height: 158px;
