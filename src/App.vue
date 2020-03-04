@@ -110,9 +110,9 @@ $(function () {
     <footer class="footer">
       <div class="container">
         <p class="">
-          由 <a href="http://weibo.com/u/1837553744?is_hot=1" target="_blank">num_10</a> 设计和编码 <span style="color: #e27575;font-size: 14px;">❤</span> | Copyright © 2020
+          由 num_10 设计和编码 <span style="color: #e27575;font-size: 14px;">❤</span> | Copyright © 2020
         </p>
-        <p class="">鄂ICP备18003304号-1</p>
+        <p class=""><a href="http://www.beian.miit.gov.cn"  target="_blank">鄂ICP备18003304号-1</a></p>
       </div>
     </footer>`
   $('#app').after(html)
